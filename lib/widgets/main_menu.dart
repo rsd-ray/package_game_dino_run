@@ -1,10 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:game_dino_run/service_injection.dart';
 
+import '../navigator_action.dart';
 import '/widgets/hud.dart';
 import '/game/dino_run.dart';
-import '/widgets/settings_menu.dart';
+// import '/widgets/settings_menu.dart';
 
 // This represents the main menu overlay.
 class MainMenu extends StatelessWidget {
@@ -52,11 +54,10 @@ class MainMenu extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      game.overlays.remove(MainMenu.id);
-                      game.overlays.add(SettingsMenu.id);
+                      injection<NavigatorAction>().execute();
                     },
                     child: const Text(
-                      'Settings',
+                      'Exit',
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
