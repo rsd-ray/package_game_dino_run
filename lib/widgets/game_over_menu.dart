@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:game_dino_run/service_injection.dart';
 import 'package:provider/provider.dart';
 
+import '../set_score_action.dart';
 import '/widgets/hud.dart';
 import '/game/dino_run.dart';
 import '/widgets/main_menu.dart';
@@ -50,7 +52,10 @@ class GameOverMenu extends StatelessWidget {
                     ),
                     Selector<PlayerData, int>(
                       selector: (_, playerData) => playerData.currentScore,
-                      builder: (_, score, __) {
+                      builder: (_, score, _) {
+
+                        injection<SetScoreAction>().execute(score);
+
                         return Text(
                           'You Score: $score',
                           style: const TextStyle(
